@@ -1,3 +1,8 @@
 This is the javascript 2 course assignement
 
-Remember, to save: git push origin js2
+Remember, to save: 
+git add .
+git commit
+(change description) then esc
+:wq
+git push origin js2
