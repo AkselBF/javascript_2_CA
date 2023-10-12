@@ -1,0 +1,1 @@
+This is the javascript 2 course assignement
