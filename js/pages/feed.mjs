@@ -1,39 +1,34 @@
-import { getApiBase } from "../script.mjs";
-const baseUrl = getApiBase();
-
+import { baseUrl } from "../src/api.mjs";
 const createPostUrl = `${baseUrl}/social/posts`;
 
-//const token = localStorage.getItem("accessToken");
-
+// For the modal
 const openModal = document.querySelector(".modal");
 const modalBackground = document.querySelector(".modal_background");
 
+// Post details
 const postImage = document.querySelector("#post_image");
 const imagePreview = document.querySelector("#image_preview");
 const titleInput = document.querySelector("#post_title");
 const contentTextarea = document.querySelector("#post_content");
 
-// Get reference to the search input element
+// Search bar
 const searchInput = document.querySelector("#searchInput");
-
-/*
-  Searching posts
-*/
 searchInput.addEventListener("input", () => {
-   const searchTerm = searchInput.value.toLowerCase();
+  const searchTerm = searchInput.value.toLowerCase();
 
-   // Get all post elements
-   const postElements = document.querySelectorAll(".post");
+  // Get all post elements
+  const postElements = document.querySelectorAll(".post");
 
-   // Loop through post elements and hide/show based on search term
-   postElements.forEach(postElement => {
-      const postTitle = postElement.querySelector(".feed_post_title").textContent.toLowerCase();
-      if (postTitle.includes(searchTerm)) {
-         postElement.style.display = "block";
-      } else {
-         postElement.style.display = "none";
-      }
-   });
+  // Loop through post elements and hide/show based on search term
+  postElements.forEach(postElement => {
+    const postTitle = postElement.querySelector(".feed_post_title").textContent.toLowerCase();
+    if (postTitle.includes(searchTerm)) {
+      postElement.style.display = "block";
+    } 
+    else {
+      postElement.style.display = "none";
+    }
+  });
 });
 
 
@@ -69,7 +64,8 @@ const updatePost = async (postId, postData) => {
       console.log("Failed to update post");
       // Optionally, display an error message to the user
     }
-  } catch (error) {
+  } 
+  catch (error) {
     console.log("Error updating post:", error);
   }
 };
@@ -97,7 +93,8 @@ async function deletePost(postId) {
       // Handle the case where the API request fails (display error message, etc.)
       console.log("Failed to delete post");
     }
-  } catch (error) {
+  } 
+  catch (error) {
     console.log("Error deleting post:", error);
     throw error; // Propagate the error for the caller to handle, if necessary
   }
@@ -167,7 +164,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
     } 
     else {
-      console.error("Failed to fetch posts");
+      console.log("Failed to fetch posts");
     }
   } 
   catch (error) {
@@ -286,34 +283,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
 
-  // Code for the view post page
-  /*
-  if (window.location.pathname.includes("post.html")) {
-    const postId = new URLSearchParams(window.location.search).get("id");
-    if (postId) {
-      try {
-        const postResponse = await fetch(`${baseUrl}/social/posts/${postId}`, {
-          method: "GET",
-          headers: {
-            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-          }
-        });
-
-        if (postResponse.ok) {
-          const postData = await postResponse.json();
-          // Render the post details using postData (e.g., postData.title, postData.body, etc.)
-        } else {
-          console.error("Failed to fetch post details");
-        }
-      } catch (error) {
-        console.error("Error fetching post details:", error);
-      }
-    } else {
-      console.error("Post ID not found in the URL");
-    }
-  }*/
-
-
   // Delete the post
   postContainer.addEventListener("click", async (event) => {
     if (event.target.classList.contains("feed_post_delete")) {
@@ -330,16 +299,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 
-// View the post
-/*
-fetchAndDisplayPosts();
-
-function navigateToPostDetails(postId) {
-  const postDetailsUrl = `${baseUrl}/social/posts/${postId}`;
-  window.location.href = postDetailsUrl;
-}*/
-
-
 // Opens up modal to make a post
 const addPostButton = document.querySelector("#add_post_button");
 addPostButton.addEventListener("click", () => {
@@ -354,7 +313,8 @@ postImage.addEventListener("input", (event) => {
   if (imageUrl) {
     // Set the <img> element's src attribute to the provided URL
     imagePreview.src = imageUrl;
-  } else {
+  } 
+  else {
     // Clear the <img> element if the input is empty
     imagePreview.src = "";
   }
@@ -389,10 +349,8 @@ postForm.addEventListener("submit", async (event) => {
   };
 
   try {
-    // Get user's access token from localStorage
     const token = localStorage.getItem("accessToken");
 
-    // Make API request to create a new post
     const response = await fetch(createPostUrl, {
       method: "POST",
       headers: {
@@ -411,11 +369,13 @@ postForm.addEventListener("submit", async (event) => {
 
       fetchPosts();
       location.reload();
-    } else {
+    } 
+    else {
       // Handle API error (display error message, etc.)
-      console.error("Failed to create post");
+      console.log("Failed to create post");
     }
-  } catch (error) {
+  } 
+  catch (error) {
     // Handle other types of errors (network issues, etc.)
     console.error("Error creating post:", error);
   }
@@ -429,10 +389,12 @@ async function fetchPosts() {
       const data = await response.json();
       // Update the UI with the fetched posts data (e.g., renderPosts(data))
       console.log("Fetched posts:", data);
-    } else {
+    } 
+    else {
       console.log("Failed to fetch posts");
     }
-  } catch (error) {
-    console.log("Error fetching posts:", error);
+  } 
+  catch (error) {
+    console.error("Error fetching posts:", error);
   }
 }
