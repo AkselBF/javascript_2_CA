@@ -1,0 +1,26 @@
+
+button {
+  width: 100px;
+  border-radius: 5px;
+  border: 2px solid $btn;
+  color: $font;
+  background-color: $btn;
+  margin: 30px auto;
+}
+
+.post_buttons {
+  justify-content: space-between;
+}
+
+.feed_post_buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  justify-content: right;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.feed_post_update, .feed_post_delete, .feed_post_view {
+  margin: 5px; 
+}

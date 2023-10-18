@@ -1,0 +1,43 @@
+
+input, textarea {
+  margin: 10px auto;
+  width: 80%;
+  border-radius: 5px;
+  padding: 2px 5px;
+}
+
+textarea {
+  height: 100px;
+}
+
+
+/*
+  For the feed page
+*/
+.media {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.updated_info {
+  position: absolute;
+  width: 400px;
+  right: 13.5%;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.update_post_buttons {
+  position: absolute;
+  top: 300px;
+  display: flex;
+  flex-direction: row;
+  right: 30%;
+}
+
+.update_post_buttons #update_post_button, 
+.update_post_buttons #close_button {
+  margin: auto 20px;
+}

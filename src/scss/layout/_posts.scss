@@ -1,0 +1,26 @@
+
+.feed_posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  height: 140px;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #42619e;
+  border-radius: 10px;
+}
+
+.feed_post_details {
+  width: 50%;
+  text-align: left;
+  margin: auto 30px;
+  color: #ffffff;
+}
+
+.feed_post_image {
+  width: 200px;
+  height: 120px;
+  border-radius: 5px;
+}

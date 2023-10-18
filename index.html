@@ -5,33 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login page</title>
 
-  <script type="module" src="./js/script.mjs"></script>
+  <link rel="stylesheet" href="./dist/css/styles.css">
 </head>
-<body>
-  <header></header>
+<body class="login_body">
+  <button id="login_button">Login</button>
+  <button id="register_button">Register</button>
 
   <main>
-    <form class="form">
-      <label for="name">Name:</label>
-      <input type="text" class="input_field" id="name" name="name" required><br>
+    <div class="login_form">
+      <h2>Login</h2>
+      <form id="login_form">
+        <input type="email" id="login_email" name="email" placeholder="E-mail" required><br>
+        <input type="password" id="login_password" name="password" placeholder="Password" required><br>
 
-      <label for="email">Email:</label>
-      <input type="email" class="input_field" id="email" name="email" required><br>
+        <button type="submit">Log in</button>
+      </form>
+    </div>
 
-      <label for="password">Password:</label>
-      <input type="password" class="input_field" id="password" name="password" required><br>
+    <div class="registration_form">
+      <h2>Register</h2>
 
-      <label for="avatar">Avatar URL:</label>
-      <input type="url" class="input_field" id="avatar" name="avatar"><br>
+      <form id="registration_form">
+        <input type="text" id="name" name="name" placeholder="Name" required><br>
+        <input type="email" id="email" name="email" placeholder="E-mail" required><br>
+        <input type="password" id="password" name="password" placeholder="Password" required><br>
+        <input type="url" id="avatar" name="avatarUrl" placeholder="Avatar url"><br>
+        <img id="avatar_preview" src="" alt="Avatar Preview">
+        <!--<input type="url" id="banner" name="banner" placeholder="Banner"><br>-->
 
-      <label for="banner">Banner URL:</label>
-      <input type="url" class="input_field" id="banner" name="banner"><br>
-
-      <button type="submit" class="login_button">Log in</button>
-      <button type="submit" class="register_button">Register</button>
-    </form>
+        <button class="submit_btn" type="submit">Register</button>
+      </form>
+    </div>
   </main>
 
-  <footer></footer>
+  <script type="module" src="./js/script.mjs"></script>
 </body>
 </html>

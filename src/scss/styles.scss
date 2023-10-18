@@ -1,0 +1,29 @@
+
+/*
+  Imported files
+*/
+// Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+// General and variables
+@import "./general";
+@import "./utils/variables";
+
+// base
+@import "./base/typography";
+
+// Components
+@import "./components/buttons";
+@import "./components/search-bar";
+
+// layout
+@import "./layout/forms";
+@import "./layout/header";
+@import "./layout/modal";
+@import "./layout/input";
+@import "./layout/posts";
+
+// Pages
+@import "./pages/login";
+@import "./pages/profile";
+@import "./pages/feed";

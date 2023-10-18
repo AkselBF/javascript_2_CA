@@ -5,13 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile page</title>
 
+  <link rel="stylesheet" href="../dist/css/styles.css">
   <script type="module" src="../js/handler/profile.mjs"></script>
 </head>
 <body>
-  <header></header>
+  <header>
+    <nav>
+      <a class="feed" href="./feed.html">Feed</a>
+      <a class="logout" href="#">Logout</a>
+    </nav>
+  </header>
 
-  <main></main>
-
-  <footer></footer>
+  <main>
+    <div class="profile_data">
+      <div class="user_info">
+        <div id="user_name"></div>
+        <div id="user_email"></div>
+      </div>
+      
+      <img id="user_avatar" src="" alt="User Avatar">
+      <!--<img id="banner" src="" alt="Banner Image">-->
+    </div>
+  </main>
 </body>
 </html>

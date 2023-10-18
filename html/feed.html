@@ -4,11 +4,45 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feed page</title>
+
+  <link rel="stylesheet" href="../dist/css/styles.css">
+  <script type="module" src="../js/pages/feed.mjs"></script>
 </head>
 <body>
-  <header></header>
+  <header>
+    <nav>
+      <a class="feed" href="./profile.html">Profile</a>
+      <a class="logout" href="../index.html">Logout</a>
+    </nav>
+  </header>
 
-  <main></main>
+  <main>
+    <div class="search_bar">
+      <input type="text" id="searchInput" placeholder="Search by title...">
+    </div>
+    <div class="modal_background"></div>
+    <form class="modal">
+      <input type="url" id="post_image" name="post image" placeholder="Image url"><br>
+      <img id="image_preview" src="" alt="Image preview"><br>
+      <input type="text" id="post_title" name="title" placeholder="Title"><br>
+      <textarea name="post content" id="post_content" placeholder="Content..."></textarea>
+
+      <div class="post_buttons">
+        <button id="submit_post_button">Submit</button>
+        <button id="close_modal">Close</button>
+      </div>
+    </form>
+    <button id="add_post_button">Add Post</button>
+
+    <div id="post_container">
+      <!--<label for="post_filter">Filter Posts:</label>
+
+      <select id="post_filter">
+        <option id="my_posts_button" value="all">Everyone</option>
+        <option id="every_posts_button" value="myPosts">My Posts</option>
+      </select>-->
+    </div>
+  </main>
 
   <footer></footer>
 </body>

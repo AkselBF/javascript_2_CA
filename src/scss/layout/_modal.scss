@@ -1,0 +1,43 @@
+.modal_background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000c8;
+  z-index: 99;
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 500px;
+  background-color: #3b3b3b;
+  padding: 20px;
+  border-radius: 10px;
+  display: none;
+  z-index: 100;
+  justify-content: center;
+  animation-name: slidedown;
+}
+
+/* Adding the animation */
+.modal {
+  animation-duration: 0.6s;
+  transition: 0.5s;
+}
+
+@keyframes slidedown {
+  from {
+    opacity: 0;
+    top: 40%;
+  }
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}

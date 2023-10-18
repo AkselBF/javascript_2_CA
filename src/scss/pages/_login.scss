@@ -1,0 +1,19 @@
+
+.login_body {
+  background-color: $profile;
+}
+
+#login_button, #register_button {
+  margin: 60px auto 0 auto;
+}
+
+#avatar_preview {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 10px auto;
+}
+
+#registration_form {
+  display: none;
+}
