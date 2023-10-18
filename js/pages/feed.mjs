@@ -37,12 +37,6 @@ searchInput.addEventListener("input", () => {
 });
 
 
-/*
-  Filter
-*/
-
-
-
 // Update function 
 const updatePost = async (postId, postData) => {
   try {
@@ -109,10 +103,12 @@ async function deletePost(postId) {
   }
 }
 
+
 /* 
   Get all posts
 */
 document.addEventListener("DOMContentLoaded", async () => {
+  const sortOptions = document.getElementById("sort-options");
   const postContainer = document.querySelector("#post_container");
 
   // Fetch posts from the API endpoint
@@ -131,6 +127,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       posts.forEach(post => {
         const postElement = document.createElement("div");
         postElement.classList.add("post");
+        postElement.dataset.created = post.created;
+
         postElement.innerHTML = `
           <div class="feed_posts" data-post-id="${post.id}">
             <img src="${post.media}" class="feed_post_image" alt="Post Image">
@@ -140,18 +138,30 @@ document.addEventListener("DOMContentLoaded", async () => {
             </div>
             <div class="feed_post_buttons">
               <button class="feed_post_update">Update</button>
-              <button class="feed_post_delete">Delete</button>
               <button class="feed_post_view">View</button>
+              <button class="feed_post_delete">Delete</button>
             </div>
           </div>
         `;
 
         postContainer.appendChild(postElement);
 
+        // Update button
         const updateButton = postElement.querySelector(".feed_post_update");
         updateButton.addEventListener("click", () => {
           const postId = postElement.dataset.postId; 
           openModalForUpdate(post, postId);
+        });
+
+        // View button
+        const viewButton = postElement.querySelector(".feed_post_view");
+        viewButton.addEventListener("click", async (event) => {
+          const postElement = event.target.closest(".feed_posts");
+          if (postElement) {
+            const postId = postElement.dataset.postId;
+            // Redirect to the post.html page with the specific post ID
+            window.location.href = `post.html?id=${postId}`;
+          }
         });
 
       });
@@ -163,6 +173,46 @@ document.addEventListener("DOMContentLoaded", async () => {
   catch (error) {
     console.error("Error fetching posts:", error);
   }
+
+
+  // Input choices
+  const sortPosts = () => {
+    const selectedOption = sortOptions.value;
+    const posts = Array.from(postContainer.children);
+
+    posts.sort((a, b) => {
+      const dateA = new Date(a.dataset.created);
+      const dateB = new Date(b.dataset.created);
+
+      if (selectedOption === "alphabetical-asc") {
+        return a.querySelector(".feed_post_title").textContent.localeCompare(b.querySelector(".feed_post_title").textContent);
+      } 
+      if (selectedOption === "alphabetical-desc") {
+        return b.querySelector(".feed_post_title").textContent.localeCompare(a.querySelector(".feed_post_title").textContent);
+      } 
+      if (selectedOption === "recent") {
+        return dateB - dateA;
+      } 
+      if (selectedOption === "oldest") {
+        return dateA - dateB;
+      }
+
+      return 0;
+    });
+
+    // Clear existing posts from the container
+    postContainer.innerHTML = "";
+
+    // Append sorted posts back to the container
+    posts.forEach(post => {
+        postContainer.appendChild(post);
+    });
+  };
+
+
+  // Event listeners for sorting and searching
+  sortOptions.addEventListener("change", sortPosts);
+  searchInput.addEventListener("input", sortPosts);
   
 
   // Update the post
@@ -199,7 +249,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Validate input (optional)
       if (updatedImage.trim() === "" || updatedTitle.trim() === "" || updatedContent.trim() === "") {
         console.log("Fields cannot be empty!");
-
         return;
       }
 
@@ -237,6 +286,34 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
 
+  // Code for the view post page
+  /*
+  if (window.location.pathname.includes("post.html")) {
+    const postId = new URLSearchParams(window.location.search).get("id");
+    if (postId) {
+      try {
+        const postResponse = await fetch(`${baseUrl}/social/posts/${postId}`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+          }
+        });
+
+        if (postResponse.ok) {
+          const postData = await postResponse.json();
+          // Render the post details using postData (e.g., postData.title, postData.body, etc.)
+        } else {
+          console.error("Failed to fetch post details");
+        }
+      } catch (error) {
+        console.error("Error fetching post details:", error);
+      }
+    } else {
+      console.error("Post ID not found in the URL");
+    }
+  }*/
+
+
   // Delete the post
   postContainer.addEventListener("click", async (event) => {
     if (event.target.classList.contains("feed_post_delete")) {
@@ -251,6 +328,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
+
+
+// View the post
+/*
+fetchAndDisplayPosts();
+
+function navigateToPostDetails(postId) {
+  const postDetailsUrl = `${baseUrl}/social/posts/${postId}`;
+  window.location.href = postDetailsUrl;
+}*/
 
 
 // Opens up modal to make a post

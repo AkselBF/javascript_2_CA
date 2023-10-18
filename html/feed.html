@@ -20,6 +20,17 @@
     <div class="search_bar">
       <input type="text" id="searchInput" placeholder="Search by title...">
     </div>
+
+    <div class="filter-options">
+      <label for="sort-options">Sort Options:</label>
+      <select id="sort-options">
+        <option value="recent">Most Recent</option>
+        <option value="oldest">Oldest</option>
+        <option value="alphabetical-asc">Alphabetical (A-Z)</option>
+        <option value="alphabetical-desc">Alphabetical (Z-A)</option>
+      </select>
+    </div>
+
     <div class="modal_background"></div>
     <form class="modal">
       <input type="url" id="post_image" name="post image" placeholder="Image url"><br>
@@ -34,14 +45,7 @@
     </form>
     <button id="add_post_button">Add Post</button>
 
-    <div id="post_container">
-      <!--<label for="post_filter">Filter Posts:</label>
-
-      <select id="post_filter">
-        <option id="my_posts_button" value="all">Everyone</option>
-        <option id="every_posts_button" value="myPosts">My Posts</option>
-      </select>-->
-    </div>
+    <div id="post_container"></div>
   </main>
 
   <footer></footer>
